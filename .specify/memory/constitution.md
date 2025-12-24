@@ -1,55 +1,73 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: N/A → 1.0.0 (initial creation)
+- Modified principles: N/A (new constitution)
+- Added sections: All principles and governance sections
+- Removed sections: N/A
+- Templates requiring updates:
+  - .specify/templates/plan-template.md ✅ updated
+  - .specify/templates/spec-template.md ✅ updated
+  - .specify/templates/tasks-template.md ✅ updated
+  - .specify/templates/commands/*.md ⚠ pending review
+- Follow-up TODOs: None
+-->
+
+# Evolution of Todo Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Spec-Driven Development Mandate
+All development must follow the approved specification lifecycle: Constitution → Specs → Plan → Tasks → Implement. No agent may write code without approved specs and tasks. This ensures alignment with business requirements and prevents scope creep.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Agent Behavior Rules
+Agents must strictly follow approved specifications without deviation. No manual coding by humans, no feature invention, no deviation from approved specifications. Refinement must occur at spec level, not code level. This maintains consistency and quality across all development activities.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Phase Governance
+Each phase is strictly scoped by its specification. Future-phase features must never leak into earlier phases. Architecture may evolve only through updated specs and plans. This ensures proper sequencing and prevents premature implementation of complex features.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Technology Stack Constraints
+Backend development must use Python with FastAPI and SQLModel. Database layer must use Neon DB. Frontend (in later phases) must use Next.js. OpenAI Agents SDK and MCP are required for agent functionality. Containerization must use Docker with Kubernetes orchestration (in later phases). Message queuing must use Kafka and Dapr (in later phases). This ensures architectural consistency and maintainability.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Quality Principles
+All code must follow clean architecture principles with clear separation of concerns. Services must be stateless where required. Code must be cloud-native ready. These principles ensure maintainable, scalable, and deployable software solutions.
 
-### [PRINCIPLE_6_NAME]
+### Compliance and Verification
+All work must be verifiable against the constitution. Agents must validate compliance with all principles before implementing. This ensures the constitution remains the governing document for all development activities.
 
+## Technology Constraints
 
-[PRINCIPLE__DESCRIPTION]
+The Evolution of Todo project must adhere to the following technology stack:
+- Backend: Python with FastAPI framework
+- Data Modeling: SQLModel for ORM
+- Database: Neon DB
+- Frontend: Next.js (for later phases)
+- Agent SDK: OpenAI Agents SDK
+- Protocol: MCP (Model Context Protocol)
+- Containerization: Docker
+- Orchestration: Kubernetes (for later phases)
+- Message Queuing: Kafka and Dapr (for later phases)
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Any deviation from this stack requires explicit approval and constitutional amendment.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Development Workflow
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+All development must follow the Spec-Driven Development lifecycle:
+1. Constitution defines the governing principles
+2. Specifications define the feature requirements
+3. Architecture plans define the implementation approach
+4. Task lists break down implementation into testable units
+5. Implementation follows the approved tasks
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Code reviews must verify compliance with all constitutional principles. No code may be merged that violates these principles without proper amendment.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution is the supreme governing document for all agents working on the Evolution of Todo project. It supersedes all other practices and guidelines.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Amendments to this constitution require formal documentation, approval from project leadership, and a migration plan for existing code. All agents must comply with the current version of the constitution.
+
+The constitution must remain stable across all phases and act as the consistent governing document for all agents. Any conflicts between this constitution and other documents must be resolved in favor of the constitution.
+
+Compliance reviews will be conducted regularly to ensure all ongoing work aligns with constitutional principles.
+
+**Version**: 1.0.0 | **Ratified**: 2025-12-24 | **Last Amended**: 2025-12-24

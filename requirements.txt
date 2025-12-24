@@ -1,0 +1,5 @@
+# Requirements for Todo Application - Phase I
+# This project uses only Python standard library, no external dependencies required
+
+# For testing
+pytest>=7.0.0
