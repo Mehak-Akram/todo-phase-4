@@ -1,8 +1,8 @@
 <!--
 Sync Impact Report:
-- Version change: N/A → 1.0.0 (initial creation)
-- Modified principles: N/A (new constitution)
-- Added sections: All principles and governance sections
+- Version change: 1.0.0 → 1.1.0 (technology matrix amendment)
+- Modified principles: Technology Stack Constraints (Phase-based requirements)
+- Added sections: Phase I, Phase II, Phase III technology constraints with rules
 - Removed sections: N/A
 - Templates requiring updates:
   - .specify/templates/plan-template.md ✅ updated
@@ -26,7 +26,11 @@ Agents must strictly follow approved specifications without deviation. No manual
 Each phase is strictly scoped by its specification. Future-phase features must never leak into earlier phases. Architecture may evolve only through updated specs and plans. This ensures proper sequencing and prevents premature implementation of complex features.
 
 ### Technology Stack Constraints
-Backend development must use Python with FastAPI and SQLModel. Database layer must use Neon DB. Frontend (in later phases) must use Next.js. OpenAI Agents SDK and MCP are required for agent functionality. Containerization must use Docker with Kubernetes orchestration (in later phases). Message queuing must use Kafka and Dapr (in later phases). This ensures architectural consistency and maintainability.
+Phase I: In-memory console application only. No web frontend, authentication, or database allowed.
+
+Phase II: Backend must use Python REST API with SQLModel or equivalent. Database must use Neon Serverless PostgreSQL. Frontend must use Next.js (React, TypeScript). Authentication must use Better Auth (signup/signin). Architecture must be full-stack web application. OpenAI Agents SDK and MCP are required for agent functionality. Containerization must use Docker with Kubernetes orchestration (in later phases). Message queuing must use Kafka and Dapr (in later phases). This ensures architectural consistency and maintainability across phases.
+
+Phase III and later: Advanced cloud infrastructure, agents, AI, orchestration allowed. This ensures proper sequencing and prevents premature implementation of complex features.
 
 ### Quality Principles
 All code must follow clean architecture principles with clear separation of concerns. Services must be stateless where required. Code must be cloud-native ready. These principles ensure maintainable, scalable, and deployable software solutions.
@@ -36,16 +40,37 @@ All work must be verifiable against the constitution. Agents must validate compl
 
 ## Technology Constraints
 
-The Evolution of Todo project must adhere to the following technology stack:
-- Backend: Python with FastAPI framework
-- Data Modeling: SQLModel for ORM
-- Database: Neon DB
-- Frontend: Next.js (for later phases)
+The Evolution of Todo project must adhere to the following technology stack by phase:
+
+### Phase I (Current)
+- Backend: In-memory console application only
+- Database: None
+- Frontend: None
+- Authentication: Not allowed
+- Other: Console-based only
+
+### Phase II (Next)
+- Backend: Python REST API
+- Database: Neon Serverless PostgreSQL
+- ORM/Data layer: SQLModel or equivalent
+- Frontend: Next.js (React, TypeScript)
+- Authentication: Better Auth (signup/signin)
+- Architecture: Full-stack web application
 - Agent SDK: OpenAI Agents SDK
 - Protocol: MCP (Model Context Protocol)
 - Containerization: Docker
 - Orchestration: Kubernetes (for later phases)
 - Message Queuing: Kafka and Dapr (for later phases)
+
+### Phase III and Later
+- Advanced cloud infrastructure, agents, AI, orchestration allowed
+
+**Rules:**
+- Authentication is allowed starting Phase II
+- Web frontend is allowed starting Phase II
+- Neon PostgreSQL is allowed starting Phase II
+- No AI or agent frameworks until later phases
+- Phase isolation must be preserved - future-phase features must not leak into earlier phases
 
 Any deviation from this stack requires explicit approval and constitutional amendment.
 
@@ -70,4 +95,4 @@ The constitution must remain stable across all phases and act as the consistent 
 
 Compliance reviews will be conducted regularly to ensure all ongoing work aligns with constitutional principles.
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-24 | **Last Amended**: 2025-12-24
+**Version**: 1.1.0 | **Ratified**: 2025-12-24 | **Last Amended**: 2025-12-26

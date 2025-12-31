@@ -1,0 +1,9 @@
+from sqlmodel import Session, select
+from typing import Optional
+from ..models.user import User
+
+def get_user_by_email(session: Session, email: str) -> Optional[User]:
+    """Get a user by email"""
+    statement = select(User).where(User.email == email)
+    user = session.exec(statement).first()
+    return user
