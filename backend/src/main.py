@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .api import auth, todos
+from .api.chat_api import router as chat_router
 from .database.database import create_db_and_tables
 import os
 from dotenv import load_dotenv
@@ -22,6 +23,7 @@ app.add_middleware(
 # Include API routers
 app.include_router(auth.router, prefix="/api")
 app.include_router(todos.router, prefix="/api")
+app.include_router(chat_router, prefix="/api")  # This will make chat endpoints like /api/chat/
 
 @app.on_event("startup")
 def on_startup():

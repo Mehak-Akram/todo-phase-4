@@ -1,0 +1,10 @@
+{{- if .Values.frontend.configmap.create -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "todo-app.fullname" . }}-frontend-config
+  labels:
+    {{- include "todo-app.labels" . | nindent 4 }}
+data:
+  api_base_url: "http://{{ include "todo-app.fullname" . }}-backend:{{ .Values.backend.service.port }}"
+{{- end }}

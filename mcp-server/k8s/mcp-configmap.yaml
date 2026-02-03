@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mcp-config
+  namespace: todo-app
+data:
+  debug: "false"
+  environment: "production"
+  log_level: "INFO"
+  backend_url: "http://backend-service.todo-app.svc.cluster.local:80"
+  timeout_seconds: "30"
+  retry_attempts: "3"
+  max_connections: "10"
+  connection_timeout: "10"
+  health_check_interval: "60"
+  graceful_shutdown_timeout: "30"

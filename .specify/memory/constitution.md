@@ -1,98 +1,55 @@
-<!--
-Sync Impact Report:
-- Version change: 1.0.0 → 1.1.0 (technology matrix amendment)
-- Modified principles: Technology Stack Constraints (Phase-based requirements)
-- Added sections: Phase I, Phase II, Phase III technology constraints with rules
-- Removed sections: N/A
-- Templates requiring updates:
-  - .specify/templates/plan-template.md ✅ updated
-  - .specify/templates/spec-template.md ✅ updated
-  - .specify/templates/tasks-template.md ✅ updated
-  - .specify/templates/commands/*.md ⚠ pending review
-- Follow-up TODOs: None
--->
-
-# Evolution of Todo Constitution
+# [PROJECT_NAME] Constitution
+<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
 
 ## Core Principles
 
-### Spec-Driven Development Mandate
-All development must follow the approved specification lifecycle: Constitution → Specs → Plan → Tasks → Implement. No agent may write code without approved specs and tasks. This ensures alignment with business requirements and prevents scope creep.
+### [PRINCIPLE_1_NAME]
+<!-- Example: I. Library-First -->
+[PRINCIPLE_1_DESCRIPTION]
+<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
 
-### Agent Behavior Rules
-Agents must strictly follow approved specifications without deviation. No manual coding by humans, no feature invention, no deviation from approved specifications. Refinement must occur at spec level, not code level. This maintains consistency and quality across all development activities.
+### [PRINCIPLE_2_NAME]
+<!-- Example: II. CLI Interface -->
+[PRINCIPLE_2_DESCRIPTION]
+<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
 
-### Phase Governance
-Each phase is strictly scoped by its specification. Future-phase features must never leak into earlier phases. Architecture may evolve only through updated specs and plans. This ensures proper sequencing and prevents premature implementation of complex features.
+### [PRINCIPLE_3_NAME]
+<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
+[PRINCIPLE_3_DESCRIPTION]
+<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
 
-### Technology Stack Constraints
-Phase I: In-memory console application only. No web frontend, authentication, or database allowed.
+### [PRINCIPLE_4_NAME]
+<!-- Example: IV. Integration Testing -->
+[PRINCIPLE_4_DESCRIPTION]
+<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
 
-Phase II: Backend must use Python REST API with SQLModel or equivalent. Database must use Neon Serverless PostgreSQL. Frontend must use Next.js (React, TypeScript). Authentication must use Better Auth (signup/signin). Architecture must be full-stack web application. OpenAI Agents SDK and MCP are required for agent functionality. Containerization must use Docker with Kubernetes orchestration (in later phases). Message queuing must use Kafka and Dapr (in later phases). This ensures architectural consistency and maintainability across phases.
+### [PRINCIPLE_5_NAME]
+<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
+[PRINCIPLE_5_DESCRIPTION]
+<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
 
-Phase III and later: Advanced cloud infrastructure, agents, AI, orchestration allowed. This ensures proper sequencing and prevents premature implementation of complex features.
+### [PRINCIPLE_6_NAME]
 
-### Quality Principles
-All code must follow clean architecture principles with clear separation of concerns. Services must be stateless where required. Code must be cloud-native ready. These principles ensure maintainable, scalable, and deployable software solutions.
 
-### Compliance and Verification
-All work must be verifiable against the constitution. Agents must validate compliance with all principles before implementing. This ensures the constitution remains the governing document for all development activities.
+[PRINCIPLE__DESCRIPTION]
 
-## Technology Constraints
+## [SECTION_2_NAME]
+<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
 
-The Evolution of Todo project must adhere to the following technology stack by phase:
+[SECTION_2_CONTENT]
+<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
 
-### Phase I (Current)
-- Backend: In-memory console application only
-- Database: None
-- Frontend: None
-- Authentication: Not allowed
-- Other: Console-based only
+## [SECTION_3_NAME]
+<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
 
-### Phase II (Next)
-- Backend: Python REST API
-- Database: Neon Serverless PostgreSQL
-- ORM/Data layer: SQLModel or equivalent
-- Frontend: Next.js (React, TypeScript)
-- Authentication: Better Auth (signup/signin)
-- Architecture: Full-stack web application
-- Agent SDK: OpenAI Agents SDK
-- Protocol: MCP (Model Context Protocol)
-- Containerization: Docker
-- Orchestration: Kubernetes (for later phases)
-- Message Queuing: Kafka and Dapr (for later phases)
-
-### Phase III and Later
-- Advanced cloud infrastructure, agents, AI, orchestration allowed
-
-**Rules:**
-- Authentication is allowed starting Phase II
-- Web frontend is allowed starting Phase II
-- Neon PostgreSQL is allowed starting Phase II
-- No AI or agent frameworks until later phases
-- Phase isolation must be preserved - future-phase features must not leak into earlier phases
-
-Any deviation from this stack requires explicit approval and constitutional amendment.
-
-## Development Workflow
-
-All development must follow the Spec-Driven Development lifecycle:
-1. Constitution defines the governing principles
-2. Specifications define the feature requirements
-3. Architecture plans define the implementation approach
-4. Task lists break down implementation into testable units
-5. Implementation follows the approved tasks
-
-Code reviews must verify compliance with all constitutional principles. No code may be merged that violates these principles without proper amendment.
+[SECTION_3_CONTENT]
+<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
 
 ## Governance
+<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-This constitution is the supreme governing document for all agents working on the Evolution of Todo project. It supersedes all other practices and guidelines.
+[GOVERNANCE_RULES]
+<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
 
-Amendments to this constitution require formal documentation, approval from project leadership, and a migration plan for existing code. All agents must comply with the current version of the constitution.
-
-The constitution must remain stable across all phases and act as the consistent governing document for all agents. Any conflicts between this constitution and other documents must be resolved in favor of the constitution.
-
-Compliance reviews will be conducted regularly to ensure all ongoing work aligns with constitutional principles.
-
-**Version**: 1.1.0 | **Ratified**: 2025-12-24 | **Last Amended**: 2025-12-26
+**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
+<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->

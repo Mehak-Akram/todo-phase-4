@@ -6,6 +6,7 @@ import { authService } from '../../services/auth';
 import { Todo } from '../../types';
 import AddTodo from '../../components/Todo/AddTodo';
 import TodoList from '../../components/Todo/TodoList';
+import { ChatbotFloatingIcon } from '../../components/Chatbot/ChatbotFloatingIcon';
 
 export default function Todos() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -27,8 +28,8 @@ export default function Todos() {
       try {
         setLoading(true);
         const response = await todoAPI.getTodos();
-        // Ensure response.data.todos is an array before setting
-        const todosData = Array.isArray(response.data.todos) ? response.data.todos : [];
+        // Response data is a direct array from backend, not wrapped in 'todos' property
+        const todosData = Array.isArray(response.data) ? response.data : [];
         setTodos(todosData);
       } catch (err: any) {
         setError(err.message || 'Failed to load todos');
@@ -229,6 +230,34 @@ export default function Todos() {
           </button>
         </div>
       </div>
+
+      {/* Chatbot Floating Icon */}
+      <ChatbotFloatingIcon onTodoChange={async () => {
+        // Refresh todos when chatbot makes changes
+        try {
+          // Add a delay to ensure backend has processed the request
+          await new Promise(resolve => setTimeout(resolve, 2000)); // Increased delay
+
+          // Make a fresh API call to get the latest todos
+          const response = await todoAPI.getTodos();
+
+          // Extract todos array from response - backend returns direct array, not wrapped in 'todos' property
+          const todosData = Array.isArray(response.data) ? response.data : [];
+
+          // Update the todos state with fresh data
+          setTodos(Array.isArray(todosData) ? [...todosData] : []);
+
+          // Clear any previous errors after successful refresh
+          if (error) {
+            setError('');
+          }
+        } catch (err: any) {
+          // Don't overwrite existing error if it's already set
+          if (!error) {
+            setError(err.message || 'Failed to load todos after chatbot action');
+          }
+        }
+      }} />
     </div>
   );
 }

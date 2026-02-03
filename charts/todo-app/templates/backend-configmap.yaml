@@ -1,0 +1,11 @@
+{{- if .Values.backend.configmap.create -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "todo-app.fullname" . }}-backend-config
+  labels:
+    {{- include "todo-app.labels" . | nindent 4 }}
+data:
+  debug: {{ .Values.backend.env.DEBUG | quote }}
+  workers: {{ .Values.backend.env.WORKERS | quote }}
+{{- end }}

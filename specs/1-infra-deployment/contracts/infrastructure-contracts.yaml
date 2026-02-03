@@ -1,0 +1,81 @@
+# Infrastructure Service Contracts for Phase IV
+
+# Backend API Health Check Contract
+/backend/health:
+  GET:
+    description: Health check endpoint for backend service
+    responses:
+      200:
+        description: Service is healthy
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [healthy]
+                timestamp:
+                  type: string
+                  format: date-time
+                version:
+                  type: string
+      503:
+        description: Service is unhealthy
+
+# Frontend Health Check Contract
+/health:
+  GET:
+    description: Health check endpoint for frontend service
+    responses:
+      200:
+        description: Service is healthy
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [healthy]
+                timestamp:
+                  type: string
+                  format: date-time
+
+# MCP Server Health Check Contract
+/mcp/health:
+  GET:
+    description: Health check endpoint for MCP server
+    responses:
+      200:
+        description: Service is healthy
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [healthy]
+                timestamp:
+                  type: string
+                  format: date-time
+
+# AI Agent Health Check Contract
+/ai/health:
+  GET:
+    description: Health check endpoint for AI agent service
+    responses:
+      200:
+        description: Service is healthy
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [healthy]
+                timestamp:
+                  type: string
+                  format: date-time

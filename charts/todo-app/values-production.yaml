@@ -1,0 +1,138 @@
+# Production values for todo-app
+
+# Frontend configuration
+frontend:
+  image:
+    repository: your-registry/todo-frontend
+    tag: "v1.0.0"
+    pullPolicy: Always
+  replicaCount: 3
+  service:
+    type: LoadBalancer
+    port: 80
+  containerPort: 80
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "200m"
+  # ConfigMap configuration
+  configmap:
+    create: true
+  # Probes configuration
+  livenessProbe:
+    httpGet:
+      path: /
+      port: http
+    initialDelaySeconds: 10
+    periodSeconds: 15
+  readinessProbe:
+    httpGet:
+      path: /
+      port: http
+    initialDelaySeconds: 5
+    periodSeconds: 10
+  # Autoscaling configuration
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 70
+
+# Backend configuration
+backend:
+  image:
+    repository: your-registry/todo-backend
+    tag: "v1.0.0"
+    pullPolicy: Always
+  replicaCount: 3
+  service:
+    type: ClusterIP
+    port: 8000
+    targetPort: 8000
+  containerPort: 8000
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "500m"
+    limits:
+      memory: "1Gi"
+      cpu: "1000m"
+  # ConfigMap configuration
+  configmap:
+    create: true
+  # Secrets configuration
+  secrets:
+    create: true
+    secretKey: "your-production-secret-key-here"  # Replace with a strong secret
+  # Probes configuration
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: http
+    initialDelaySeconds: 60
+    periodSeconds: 20
+  readinessProbe:
+    httpGet:
+      path: /health
+      port: http
+    initialDelaySeconds: 10
+    periodSeconds: 10
+  startupProbe:
+    httpGet:
+      path: /health
+      port: http
+    failureThreshold: 60
+    periodSeconds: 10
+  # Autoscaling configuration
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 15
+    targetCPUUtilizationPercentage: 70
+
+# Database configuration
+database:
+  type: postgresql  # Options: sqlite, postgresql
+  # PostgreSQL configuration (if using PostgreSQL)
+  postgresql:
+    host: "postgresql-service"  # Replace with your PostgreSQL service
+    port: 5432
+    username: "todo_user"
+    password: "secure_password"  # Should be in secrets
+    database: "todo_production"
+    sslmode: "require"
+
+# Ingress configuration
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: todo.yourdomain.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: todo-tls-cert
+      hosts:
+        - todo.yourdomain.com
+
+# Image pull secrets (if using private registry)
+imagePullSecrets:
+  - name: your-registry-secret
+
+# Security context
+podSecurityContext:
+  fsGroup: 2000
+securityContext:
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: false  # May need to be false for some applications
+  runAsNonRoot: true
+  runAsUser: 1000
