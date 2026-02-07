@@ -11,7 +11,7 @@ def get_openrouter_client():
     """
     if not settings.openrouter_api_key:
         logger.error("OpenRouter API key is not configured. Please set OPENROUTER_API_KEY in your environment.")
-        raise ValueError("OpenRouter API key is not configured")
+        return None
 
     # Initialize OpenAI client with OpenRouter base URL
     client = OpenAI(

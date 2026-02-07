@@ -31,7 +31,7 @@ ENV PYTHONPATH=/app
 ENV PORT=8000
 
 # Create entrypoint script for better error handling
-RUN echo '#!/bin/bash\nset -e\npython -c "from src.database.database import create_db_and_tables; create_db_and_tables()"\necho "Database initialized successfully"\nexec uvicorn src.main:app --host 0.0.0.0 --port $PORT --reload' > /app/entrypoint.sh
+RUN echo '#!/bin/bash\nset -e\npython -c "from src.database.database import create_db_and_tables; create_db_and_tables()"\necho "Database initialized successfully"\nexec uvicorn src.main:app --host 0.0.0.0 --port $PORT' > /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
 # Run database initialization and start the application

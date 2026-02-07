@@ -25,4 +25,5 @@ COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 3000
 
-CMD ["npx", "next", "start", "-H", "0.0.0.0"]
+# Override the start script to bind to 0.0.0.0
+CMD ["sh", "-c", "next start -H 0.0.0.0 -p 3000"]

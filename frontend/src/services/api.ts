@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { AuthResponse, TodoResponse, User, Todo } from '../types';
 
 // Base URL for the main backend API (both todo and auth endpoints are on the same backend)
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://todo-todo-app-backend:8000';
 const USE_API_PREFIX = process.env.NEXT_PUBLIC_USE_API_PREFIX === 'true';
 
 // Create axios instance for main API (todos and auth)

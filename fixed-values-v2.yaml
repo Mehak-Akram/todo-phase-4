@@ -1,0 +1,99 @@
+# Fixed values to resolve deployment issues
+
+# Frontend configuration
+frontend:
+  image:
+    repository: frontend
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  replicaCount: 2
+  service:
+    type: ClusterIP
+    port: 80
+  containerPort: 3000
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
+      cpu: "200m"
+  env:
+    API_BASE_URL: "http://todo-todo-app-backend:8000"  # Internal service URL
+  # ConfigMap configuration
+  configmap:
+    create: true
+  # Probes configuration - Changed to use root path which should work for Next.js
+  livenessProbe:
+    httpGet:
+      path: /
+      port: http
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+  readinessProbe:
+    httpGet:
+      path: /
+      port: http
+    initialDelaySeconds: 15
+    periodSeconds: 5
+    timeoutSeconds: 3
+  startupProbe:
+    httpGet:
+      path: /
+      port: http
+    initialDelaySeconds: 10
+    periodSeconds: 10
+    failureThreshold: 30
+    timeoutSeconds: 5
+
+# Backend configuration
+backend:
+  image:
+    repository: backend
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  replicaCount: 2
+  service:
+    type: ClusterIP
+    port: 8000
+    targetPort: 8000
+  containerPort: 8000
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+  env:
+    SECRET_KEY: "your-super-secret-key-change-in-production"
+    DEBUG: "True"
+    WORKERS: "4"
+    OPENROUTER_API_KEY: "test-key"
+  # ConfigMap configuration
+  configmap:
+    create: true
+  # Secrets configuration
+  secrets:
+    create: true
+    secretKey: ""
+  # Probes configuration
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: http
+    initialDelaySeconds: 30
+    periodSeconds: 10
+  readinessProbe:
+    httpGet:
+      path: /health
+      port: http
+    initialDelaySeconds: 5
+    periodSeconds: 5
+  startupProbe:
+    httpGet:
+      path: /health
+      port: http
+    failureThreshold: 30
+    periodSeconds: 10

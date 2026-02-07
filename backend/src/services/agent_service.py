@@ -12,6 +12,9 @@ from ..tools.enhanced_todo_operations import DeleteTodoByContentTool, UpdateTodo
 from sqlalchemy.orm import Session
 from ..database.database import get_session
 
+if openrouter_client is None:
+    print("OpenRouter disabled")
+
 
 class AgentService:
     def __init__(self):
